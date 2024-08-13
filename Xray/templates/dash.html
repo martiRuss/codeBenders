@@ -1,0 +1,292 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Dashboard Layout</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    @import url("https://css.gg/css");
+    body, html {
+      height: 100%;
+      background-color: #B1C2DE; /* Light blue background */
+      margin: 0;
+      overflow: hidden;
+    }
+    .sidebar {
+      background: linear-gradient(180deg, #a8edea 0%, #fed6e3 100%); /* Gradient pastel color */
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+    .sidebar img {
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .sidebar p {
+      margin: 5px 0;
+    }
+    .sidebar .nav-item {
+      margin: 20px 0;
+    }
+    .sidebar .nav-item a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: transparent; /* Removed grey background */
+      color: #333;
+      text-decoration: none;
+    }
+    .sidebar .nav-item a:hover {
+      background-color: #ccc;
+    }
+    .content {
+      background-color: #ffffff; /* White content area */
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .full-height {
+      height: 100%;
+      padding: 35px;
+      box-sizing: border-box;
+    }
+    .rounded-edges {
+      border-radius: 30px;
+      overflow: hidden;
+      height: 100%;
+    }
+    .rounded1 {
+      width: 30%;
+      border-radius: 50%;
+    }
+    .sear {
+      border-radius: 90px;
+      color: rgb(113, 111, 111);
+    }
+    .main {
+      overflow: hidden;
+      height: 100%;
+    }
+    .custom-row {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar-row {
+      flex: 0 0 8%; /* 8% height */
+    }
+    .content-row {
+      flex: 1; /* Remaining height */
+      display: flex;
+      overflow: hidden;
+    }
+    .col-9 {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .row-6 {
+      flex: 0 0 40%; /* 40% height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .row-5 {
+      flex: 0 0 60%; /* 60% height */
+      display: flex;
+      align-items: top;
+      justify-content: center;
+      overflow: hidden;
+      flex-wrap: wrap;
+    }
+    .text {
+      background-color: #DBE3E5;
+    }
+    .image_upload {
+      background-color: #DBE3E5;
+    }
+    .card {
+      width: 100%;
+    }
+    .img-fluid {
+      width: 50%;
+    }
+    .medsam-card {
+      background-color: #000; /* Black background */
+      color: #fff; /* White text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80%; /* Use available height */
+      font-size: 2em;
+      font-weight: bold;
+      font-family: 'Arial', sans-serif;
+      padding: 20px;
+      overflow: hidden; /* Ensure no overflow */
+      background-image: url({% static 'color.jpg' %}); /* Replace with your image URL */
+      background-size: cover; /* Cover the entire card */
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Do not repeat the image */
+    }
+    .medsam-card button {
+      margin-top: 20px;
+      background-color: #9d74ef; /* Pastel color */
+      border: none;
+      color: #333;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .medsam-card button:hover {
+      background-color: #fed6e3; /* Hover pastel color */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-fluid full-height">
+    <div class="row rounded-edges">
+      <!-- Sidebar -->
+      <div class="col-1 sidebar text-center">
+        <img src="{% static 'doc.jpg' %}" alt="doc" class="rounded1">
+        <p><b>Dr. {{ user.username }}</b></p>
+        <ul class="nav flex-column my-4">
+          <li class="nav-item">
+            <a href="#"><i class="gg-home"></i></a>
+          </li>
+          <li class="nav-item">
+            <a href="#"><i class="gg-user"></i></a>
+          </li>
+          <li class="nav-item">
+            <a href="#"><i class="gg-mail"></i></a>
+          </li>
+          <li class="nav-item">
+            <a href="#"><i class="gg-options"></i></a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'logout' %}"><i class="gg-log-out"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Main Content Area -->
+      <div class="col-11 content">
+        <div class="navbar-row">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#">RadXpert</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 sear" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0 sear" type="submit"><i class="gg-search-found"></i></button>
+              </form>
+            </div>
+          </nav>
+        </div>
+        <div class="content-row">
+          <div class="col-9">
+            <div class="row-6">
+              <div class="col-12 col-md-8">
+                <div class="card mb-5 text-center text">
+                  <div class="card-body">
+                    <div id="result">
+                      <h5 class="card-title txt_show">Text generated from the X-ray images</h5>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted">
+                    <a href="#" class="btn btn-light">Generate Report</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row-5">
+              <div class="col align-items-center py-3 text-center">
+                <div class="card medsam-card">
+                  medSAM
+                  <button>Analyze</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 d-flex align-items-center justify-content-center">
+            <div class="card image_upload">
+              <img class="card-img-top" src="{% static 'Xray.jpg' %}" alt="Card image cap">
+              <div class="card-body">
+                <div class="input-group">
+                  <textarea id="jsonText" class="form-control" aria-label="With textarea" placeholder="Input txt and upload image" rows="7" cols="50"></textarea>
+                </div>
+                <div class="input-group">
+                  <input type="file" id="jsonFile" class="form-control" aria-label="Upload JSON file">
+                </div>
+                <div class="input-group mt-2">
+                  <a href="#" onclick="showJSON()" class="btn btn-light btn-block">Upload</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showJSON() {
+      var fileInput = document.getElementById('jsonFile');
+      var file = fileInput.files[0];
+      var reader = new FileReader();
+      
+      reader.onload = function(e) {
+        var reportJSON = e.target.result;
+        var reportObj = JSON.parse(reportJSON);
+        var CXRReport = reportObj["CXR248_IM-1008"];
+
+        var impression = CXRReport.impression;
+        var findings = CXRReport.findings;
+
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "<strong>Impression:</strong> " + impression + "<br /><strong>Findings:</strong> " + findings;
+      };
+      
+      reader.readAsText(file);
+    }
+  </script>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
